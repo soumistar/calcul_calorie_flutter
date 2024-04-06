@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   double? poids;
   bool genre = false;
   double age = 0.0;
+  double taille = 170.0;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -52,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       elevation: 10,
                       child: Column(
                         children: <Widget>[
+                          padding(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
@@ -74,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ],
                           ),
+                          padding(),
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: setColor()),
@@ -83,6 +86,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ? "Appuyer pour entrer votre age"
                                       : "Votre age est de: ${age.toInt()}",
                                   color: Colors.white)),
+                          padding(),
+                          textAvecStyle(
+                              "Votre taille est de : ${taille.toInt()}",
+                              color: setColor()),
+                          padding(),
+                          Slider(
+                              value: taille,
+                              activeColor: setColor(),
+                              onChanged: (double d) {
+                                setState(() {
+                                  taille = d;
+                                });
+                              },
+                              max: 215.0,
+                              min: 100.0),
+                          padding(),
                           TextField(
                             keyboardType: TextInputType.number,
                             onChanged: (String string) {
@@ -94,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               labelText: "Entrez votre poids en kilos",
                             ),
                           ),
+                          padding(),
                         ],
                       ))
                 ],
@@ -109,23 +129,27 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Future<DateTime?> montrerPicker() async {
-  DateTime? choix = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-      initialDatePickerMode: DatePickerMode.year);
-  if (choix != null) {
-    var difference = DateTime.now().difference(choix);
-    var jour = difference.inDays;
-    var ans = (jour / 365);
-    setState(() {
-      age = ans;
-    });
+  Padding padding() {
+    return const Padding(padding: EdgeInsets.only(top: 20));
   }
-  return choix; // Ajoutez cette ligne pour renvoyer la valeur obtenue
-}
+
+  Future<DateTime?> montrerPicker() async {
+    DateTime? choix = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1900),
+        lastDate: DateTime.now(),
+        initialDatePickerMode: DatePickerMode.year);
+    if (choix != null) {
+      var difference = DateTime.now().difference(choix);
+      var jour = difference.inDays;
+      var ans = (jour / 365);
+      setState(() {
+        age = ans;
+      });
+    }
+    return choix; // Ajoutez cette ligne pour renvoyer la valeur obtenue
+  }
 
   Text textAvecStyle(String data,
       {color = Colors.black, double fontSize = 15}) {
