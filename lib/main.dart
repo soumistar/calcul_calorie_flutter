@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -30,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   double? poids;
   bool genre = false;
+  double age = 0.0;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -71,6 +74,15 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ],
                           ),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: setColor()),
+                              onPressed: (() => montrerPicker()),
+                              child: textAvecStyle(
+                                  (age == 0.0)
+                                      ? "Appuyer pour entrer votre age"
+                                      : "Votre age est de: ${age.toInt()}",
+                                  color: Colors.white)),
                           TextField(
                             keyboardType: TextInputType.number,
                             onChanged: (String string) {
@@ -96,6 +108,24 @@ class _MyHomePageState extends State<MyHomePage> {
       return Colors.pink;
     }
   }
+
+  Future<DateTime?> montrerPicker() async {
+  DateTime? choix = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      initialDatePickerMode: DatePickerMode.year);
+  if (choix != null) {
+    var difference = DateTime.now().difference(choix);
+    var jour = difference.inDays;
+    var ans = (jour / 365);
+    setState(() {
+      age = ans;
+    });
+  }
+  return choix; // Ajoutez cette ligne pour renvoyer la valeur obtenue
+}
 
   Text textAvecStyle(String data,
       {color = Colors.black, double fontSize = 15}) {
