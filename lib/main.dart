@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             //     poids = double.tryParse(string);
                             //   });
                             // }
+                            
                             decoration: InputDecoration(
                               labelText: "Entrez votre poids en kilos",
                             ),
