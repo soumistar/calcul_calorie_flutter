@@ -30,10 +30,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int radioSelectionne = 0;
   double? poids;
   bool genre = false;
   double age = 0.0;
   double taille = 170.0;
+  Map mapActipe = {
+    "Faible": 0,
+    "Modere": 1,
+    "Forte": 2,
+  };
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -114,6 +120,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           padding(),
+                          textAvecStyle("Quelle est votre activité sportive:", color: setColor()),
+                          padding(),
+                          rowRadio(),
+                          padding(),
                         ],
                       ))
                 ],
@@ -131,6 +141,33 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Padding padding() {
     return const Padding(padding: EdgeInsets.only(top: 20));
+  }
+
+  Row rowRadio(){
+    List<Widget> l = [];
+    mapActipe.forEach((key, value) {
+      Column colonne = Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Radio(
+            activeColor: setColor(),
+            value: value, 
+          groupValue: radioSelectionne, 
+          onChanged:  (dynamic i){
+            setState(() {
+              radioSelectionne = i;
+            });
+          } ),
+          textAvecStyle(key, color: setColor()),
+
+        ],
+      );
+      l.add(colonne);
+    });
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children : l, 
+    );
   }
 
   Future<DateTime?> montrerPicker() async {
