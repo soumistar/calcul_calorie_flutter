@@ -140,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Padding padding() {
-    return const Padding(padding: EdgeInsets.only(top: 20));
+    return const Padding(padding: EdgeInsets.only(top: 40));
   }
 
   Row rowRadio(){
@@ -185,6 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
         age = ans;
       });
     }
+    
     return choix; // Ajoutez cette ligne pour renvoyer la valeur obtenue
   }
 
