@@ -49,12 +49,15 @@ class _MyHomePageState extends State<MyHomePage> {
               backgroundColor: setColor(),
               title: Text(widget.title),
             ),
-            body: Center(
+            body: SingleChildScrollView(
+              padding: EdgeInsets.all(15),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
+                  padding(),
                   textAvecStyle(
                       "Remplissez tous les champs pour obtenir votre besoin journalier en calorie"),
+                      padding(),
                   Card(
                       elevation: 10,
                       child: Column(
@@ -140,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Padding padding() {
-    return const Padding(padding: EdgeInsets.only(top: 40));
+    return const Padding(padding: EdgeInsets.only(top: 20));
   }
 
   Row rowRadio(){
