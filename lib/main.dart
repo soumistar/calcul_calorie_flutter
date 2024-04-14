@@ -65,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         children: <Widget>[
                           padding(),
+                          
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
@@ -88,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           padding(),
+
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: setColor()),
@@ -98,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       : "Votre age est de: ${age.toInt()}",
                                   color: Colors.white)),
                           padding(),
+
                           textAvecStyle(
                               "Votre taille est de : ${taille.toInt()}",
                               color: setColor()),
@@ -113,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               max: 215.0,
                               min: 0.0),
                           padding(),
+
                           TextField(
                             keyboardType: TextInputType.number,
                             onChanged: (String string) {
@@ -125,6 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           padding(),
+
                           textAvecStyle("Quelle est votre activité sportive:",
                               color: setColor()),
                           padding(),
